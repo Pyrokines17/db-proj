@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.db_proj.client.ClientController">
+   <tabs>
+       <Tab closable="false" text="Работники">
+          <content>
+              <VBox alignment="CENTER" spacing="20.0">
+                  <padding>
+                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+               <children>
+                  <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                     <children>
+                        <TextField fx:id="departmentAgeTextField" promptText="Возраст" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="12.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="departmentChildTextField" promptText="Кол-во детей" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="14.0" prefWidth="31.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="departmentEmploymentTextField" promptText="Стаж" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="13.0" prefWidth="6.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="departmentSalaryTextField" promptText="Зарплата" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                     <children>
+                        <Separator prefHeight="7.0" prefWidth="27.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label prefHeight="19.0" prefWidth="34.0" text="Пол: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="departmentGenderChoiceBox" prefHeight="26.0" prefWidth="97.0" />
+                        <Separator prefHeight="10.0" prefWidth="19.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Отдел: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="departmentChoiceBox" prefHeight="29.0" prefWidth="127.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <CheckBox fx:id="departmentDirectorCheckBox" mnemonicParsing="false" text="Начальники" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="4.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onDepartmentGetButtonClick" text="Получить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="37.0" visible="false" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="departmentResponseArea" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Удалить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="6.0" prefWidth="187.0" visible="false"  HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" text="Добавить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="183.0" visible="false"  HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Изменить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+              </VBox>
+          </content>
+       </Tab>
+       <Tab closable="false" text="Бригады">
+         <content>
+            <VBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                     <children>
+                        <Separator prefHeight="0.0" prefWidth="36.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Номер: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="brigadeChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="75.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <CheckBox fx:id="brigadeSalaryCheckBox" mnemonicParsing="false" text="Зарплата выше среднего" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="1.0" prefWidth="29.0" visible="false" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                     <children>
+                        <Separator prefHeight="10.0" prefWidth="1.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Рейс: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="brigadeFlightChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onBrigadeGetButtonClick" text="Получить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="8.0" prefWidth="25.0" visible="false" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="brigadeResponseArea" VBox.vgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Пилоты">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <TextField fx:id="pilotMedYearTextField" promptText="Год медосмотра" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="83.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="pilotSalaryTextField" prefHeight="29.0" prefWidth="163.0" promptText="Средняя зарплата" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="70.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="pilotAgeTextField" promptText="Возраст" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Статус: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="pilotStatusChoiceBox" prefHeight="29.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="21.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Пол: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="pilotGenderChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="35.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onPilotGetButtonClick" text="Получить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="pilotResponseArea" VBox.vgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Самолёты">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Куда приписан: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="planePlaceChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="3.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="excludedFlightTextField" prefHeight="29.0" prefWidth="128.0" promptText="Проверяемое время" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="7.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="flightsCountTextField" prefHeight="29.0" prefWidth="106.0" promptText="Кол-во полётов" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="125.0" text="Куда прибудет: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="departureCityChoiceBox" prefHeight="29.0" prefWidth="160.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="44.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="arrivalTimeTextField" prefHeight="29.0" prefWidth="165.0" promptText="Время поступления" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="6.0" prefWidth="77.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onPlaneGetButtonClick" prefHeight="29.0" prefWidth="145.0" text="Получить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="planeResponseArea" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Удалить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="6.0" prefWidth="187.0" visible="false"  HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" text="Добавить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="183.0" visible="false"  HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Изменить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Техосмотры">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <DatePicker fx:id="startRepairDatePicker" promptText="Дата &quot;от&quot;" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="22.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <DatePicker fx:id="endRepairDatePicker" promptText="Дата &quot;до&quot;" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="18.0" prefWidth="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <CheckBox fx:id="repairCheckBox" mnemonicParsing="false" prefHeight="19.0" prefWidth="128.0" text="Сдан в ремонт" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <TextField fx:id="repairCountTextField" prefHeight="29.0" prefWidth="232.0" promptText="Кол-во ремонтов" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="113.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="differenceTextField" prefHeight="29.0" prefWidth="250.0" promptText="Рейсы до ремонта" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="29.0" prefWidth="107.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="agePlaneTextField" promptText="Возраст" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="87.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onRepairGetButtonClick" prefHeight="29.0" prefWidth="177.0" text="Получить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="repairResponseArea" VBox.vgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Пассажиры">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <CheckBox fx:id="luggageCheckBox" mnemonicParsing="false" prefHeight="19.0" prefWidth="71.0" text="Багаж" HBox.hgrow="ALWAYS" />
+                        <Separator visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Пол: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="passengerGenderChoiceBox" prefHeight="29.0" prefWidth="131.0" HBox.hgrow="ALWAYS" />
+                        <Separator visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="passengerAgeTextField" prefHeight="29.0" prefWidth="2.0" promptText="Возраст" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="106.0" text="Рейс: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="passengerFlightChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <DatePicker fx:id="passengerFlightDatePicker" prefHeight="29.0" prefWidth="188.0" promptText="Дата полёта" HBox.hgrow="ALWAYS" />
+                        <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onPassengerGetButtonClick" prefHeight="29.0" prefWidth="152.0" text="Получить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="passengerResponseArea" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Удалить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="6.0" prefWidth="187.0" visible="false"  HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" text="Добавить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="183.0" visible="false"  HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Изменить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Места">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <CheckBox fx:id="freePlaceCheckBox" mnemonicParsing="false" text="Свободные" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="25.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <DatePicker fx:id="dateOfPlaceDatePicker" promptText="День рейса" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="3.0" prefWidth="22.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Рейс:  " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="flightFreePlaceChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="74.0" text="Маршрут: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="routeFreePlaceChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="20.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="costFreePlaceTextField" prefHeight="29.0" prefWidth="113.0" promptText="Цена" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="11.0" prefWidth="19.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="timeFreePlaceTextField" prefHeight="29.0" prefWidth="123.0" promptText="Время" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="6.0" prefWidth="35.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onFreePlaceGetButtonClick" prefHeight="29.0" prefWidth="102.0" text="Получить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="freePlaceResponseArea" VBox.vgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Билеты">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <DatePicker fx:id="dateReturnDatePicker" prefHeight="22.0" prefWidth="159.0" promptText="Дата сдачи" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="55.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label prefHeight="19.0" prefWidth="60.0" text="Рейс: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="flightReturnChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="75.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="returnCostTextField" promptText="Цена" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="76.0" text="Маршрут: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="routeReturnChoiceBox" prefHeight="14.0" prefWidth="121.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="9.0" prefWidth="16.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="ageReturnTextField" prefHeight="29.0" prefWidth="144.0" promptText="Возраст человека" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="9.0" prefWidth="9.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Label text="Пол: " HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="genderReturnChoiceBox" prefHeight="29.0" prefWidth="106.0" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="17.0" prefWidth="13.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onReturnGetButtonClick" text="Получить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="returnResponseArea" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Удалить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="6.0" prefWidth="187.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" text="Добавить" HBox.hgrow="ALWAYS" />
+                        <Separator prefHeight="0.0" prefWidth="183.0" visible="false" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Изменить" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Рейсы">
+         <content>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab closable="false" text="Часть 1">
+                     <content>
+                        <VBox spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefHeight="0.0" prefWidth="100.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="115.0" text="Маршрут: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="routeChoiceBox" prefHeight="29.0" prefWidth="224.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="9.0" prefWidth="90.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="timeRouteTextField" prefHeight="29.0" prefWidth="211.0" promptText="Длительность" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="0.0" prefWidth="103.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="costRouteTextField" promptText="Цена" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#onRouteGetButtonClick" prefHeight="29.0" prefWidth="173.0" text="Получить" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="routeResponseArea" VBox.vgrow="ALWAYS" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Удалить" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="6.0" prefWidth="187.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" text="Добавить" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="0.0" prefWidth="183.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Изменить" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+                <Tab closable="false" text="Часть 2">
+                     <content>
+                        <VBox spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="155.0" text="Статус: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="flightStatusChoiceBox" prefHeight="29.0" prefWidth="182.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="170.0" text="Маршрут: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="flightRouteChoiceBox" prefHeight="29.0" prefWidth="188.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <TextField fx:id="flightPlacesTextField" prefHeight="29.0" prefWidth="211.0" promptText="Свободные места" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="8.0" prefWidth="83.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <CheckBox fx:id="flightRatioCheckBox" mnemonicParsing="false" prefHeight="19.0" prefWidth="145.0" text="В процентах" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="19.0" prefWidth="95.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#onFlightGetButtonClick" prefHeight="29.0" prefWidth="171.0" text="Получить" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="flightResponseArea" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Часть 3">
+                     <content>
+                        <VBox spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="164.0" text="Статус: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="flightStatusDelayChoiceBox" prefHeight="25.0" prefWidth="218.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="187.0" text="Маршрут: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="routeDelayChoiceBox" prefHeight="29.0" prefWidth="204.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <CheckBox fx:id="delayCheckBox" mnemonicParsing="false" prefHeight="19.0" prefWidth="190.0" text="Сдача билетов" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="0.0" prefWidth="109.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#onDelayGetButtonClick" prefHeight="29.0" prefWidth="181.0" text="Получить" HBox.hgrow="ALWAYS" />
+                                    <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="delayResponseArea" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Часть 4">
+                     <content>
+                        <VBox spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefHeight="0.0" prefWidth="93.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#onCalcButtonClick" text="Считать среднее количество" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="11.0" prefWidth="82.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="routeCalcLabel" text="Результат" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Label prefHeight="19.0" prefWidth="69.0" text="Самолёт: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="modelsChoiceBox" prefHeight="29.0" prefWidth="120.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="16.0" prefWidth="97.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="timeDepartTextField" promptText="Время вылета" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="17.0" prefWidth="87.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#onDepartGetButtonClick" prefHeight="29.0" prefWidth="91.0" text="Получить" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="departResponseArea" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Часть 5">
+                     <content>
+                        <VBox spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefHeight="0.0" prefWidth="139.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="108.0" text="Категория: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="categoryChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="25.0" prefWidth="82.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Separator prefHeight="41.0" prefWidth="142.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="19.0" prefWidth="76.0" text="Самолёт: " HBox.hgrow="ALWAYS" />
+                                    <ChoiceBox fx:id="modelsChoice" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="0.0" prefWidth="89.0" visible="false" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#onCategoryGetButtonClick" prefHeight="29.0" prefWidth="100.0" text="Получить" HBox.hgrow="ALWAYS" />
+                                    <Separator prefHeight="13.0" prefWidth="120.0" visible="false" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="categoryResponseArea" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
